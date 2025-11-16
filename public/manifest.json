@@ -1,0 +1,17 @@
+{
+  "name": "Toolify",
+  "short_name": "Toolify",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1027",
+  "theme_color": "#3b82f6",
+  "description": "Toolify – free, offline-capable utility hub: QR, invoices, OCR, background removal, and PDF → searchable.",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
