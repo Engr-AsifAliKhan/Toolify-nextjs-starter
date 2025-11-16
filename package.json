@@ -21,8 +21,7 @@
     "react-hook-form": "7.53.0",
     "localforage": "1.10.0",
     "next-auth": "5.0.0-beta.25",
-    "workbox-window": "7.1.0",
-    "next-themes": "0.3.0"
+    "workbox-window": "7.1.0"
   },
   "devDependencies": {
     "typescript": "5.6.3",

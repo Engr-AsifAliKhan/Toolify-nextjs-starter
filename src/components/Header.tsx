@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
-import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Workbox } from "workbox-window";
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
+  const [theme, setTheme] = useState<string>(() => {
+    if (typeof window === "undefined") return "light";
+    return localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  });
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -14,6 +16,13 @@ export default function Header() {
       wb.register();
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme]);
 
   return (
     <nav className="w-full sticky top-0 z-40 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
@@ -36,7 +45,6 @@ export default function Header() {
           >
             {theme === "dark" ? "Light" : "Dark"}
           </button>
-          {/* Placeholder auth buttons; NextAuth wired in (auth route handlers) */}
           <Link href="/api/auth/signin" className="rounded bg-white text-blue-700 px-3 py-1 text-sm font-medium">
             Sign In
           </Link>
